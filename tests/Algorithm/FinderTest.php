@@ -66,8 +66,8 @@ final class FinderTest extends TestCase
         $result = $finder->find();
 
         $this->assertEquals(true, $result->hasAnswer());
-        $this->assertEquals($this->sue, $result->getAnswer()->person1());
-        $this->assertEquals($this->greg, $result->getAnswer()->person2());
+        $this->assertEquals($this->sue, $result->getAnswer()->younger());
+        $this->assertEquals($this->greg, $result->getAnswer()->older());
     }
 
     /** @test */
@@ -81,8 +81,8 @@ final class FinderTest extends TestCase
         $result = $finder->find();
 
         $this->assertEquals(true, $result->hasAnswer());
-        $this->assertEquals($this->greg, $result->getAnswer()->person1());
-        $this->assertEquals($this->mike, $result->getAnswer()->person2());
+        $this->assertEquals($this->greg, $result->getAnswer()->younger());
+        $this->assertEquals($this->mike, $result->getAnswer()->older());
     }
 
     /** @test */
@@ -98,8 +98,8 @@ final class FinderTest extends TestCase
         $result = $finder->find();
 
         $this->assertEquals(true, $result->hasAnswer());
-        $this->assertEquals($this->sue, $result->getAnswer()->person1());
-        $this->assertEquals($this->sarah, $result->getAnswer()->person2());
+        $this->assertEquals($this->sue, $result->getAnswer()->younger());
+        $this->assertEquals($this->sarah, $result->getAnswer()->older());
     }
 
     /**
@@ -117,7 +117,7 @@ final class FinderTest extends TestCase
         $result = $finder->find();
 
         $this->assertEquals(true, $result->hasAnswer());
-        $this->assertEquals($this->sue, $result->getAnswer()->person1());
-        $this->assertEquals($this->greg, $result->getAnswer()->person2());
+        $this->assertEquals($this->sue, $result->getAnswer()->younger());
+        $this->assertEquals($this->greg, $result->getAnswer()->older());
     }
 }

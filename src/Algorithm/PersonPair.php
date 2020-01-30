@@ -7,29 +7,33 @@ namespace CodelyTV\FinderKata\Algorithm;
 final class PersonPair
 {
     /** @var Person */
-    protected $person1;
+    protected $younger;
 
     /** @var Person */
-    protected $person2;
+    protected $older;
 
-    public function __construct(Person $person1 = null, Person $person2 = null)
+    public function __construct(Person $person1, Person $person2)
     {
-        $this->person1 = $person1;
-        $this->person2 = $person2;
+        $this->younger = $person1;
+        $this->older = $person2;
+        if ($person1->getBirthDate() > $person2->getBirthDate()) {
+            $this->younger = $person2;
+            $this->older = $person1;
+        }
     }
 
-    public function person1()
+    public function younger()
     {
-        return $this->person1;
+        return $this->younger;
     }
 
-    public function person2()
+    public function older()
     {
-        return $this->person2;
+        return $this->older;
     }
 
     public function ageDifference()
     {
-        return $this->person2->getBirthDateTimestamp() - $this->person1->getBirthDateTimestamp();
+        return $this->older->getBirthDateTimestamp() - $this->younger->getBirthDateTimestamp();
     }
 }

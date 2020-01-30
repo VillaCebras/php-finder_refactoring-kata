@@ -25,11 +25,6 @@ final class Finder
         for ($i = 0; $i < count($this->people); $i++) {
             for ($j = $i + 1; $j < count($this->people); $j++) {
                 $candidatePair = new PersonPair($this->people[$j], $this->people[$i]);
-
-                if ($this->people[$i]->getBirthDate() < $this->people[$j]->getBirthDate()) {
-                    $candidatePair = new PersonPair($this->people[$i], $this->people[$j]);
-                }
-
                 $possibleResults[] = $candidatePair;
             }
         }
