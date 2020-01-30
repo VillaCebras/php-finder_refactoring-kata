@@ -9,12 +9,15 @@ final class Finder
     /** @var Person[] */
     private $people;
 
-    public function __construct(array $people)
+    private $comparator;
+
+    public function __construct(array $people, FinderComparisonAlgorithm $comparator)
     {
         $this->people = $people;
+        $this->comparator = $comparator;
     }
 
-    public function find(int $ft): FinderResult
+    public function find(): FinderResult
     {
         /** @var PersonPair[] $possibleResults */
         $possibleResults = [];
@@ -38,19 +41,7 @@ final class Finder
         $answer = $possibleResults[0];
 
         foreach ($possibleResults as $candidateAnswer) {
-            switch ($ft) {
-                case FinderComparisonAlgorithm::ONE:
-                    if ($candidateAnswer->ageDifference() < $answer->ageDifference()) {
-                        $answer = $candidateAnswer;
-                    }
-                    break;
-
-                case FinderComparisonAlgorithm::TWO:
-                    if ($candidateAnswer->ageDifference() > $answer->ageDifference()) {
-                        $answer = $candidateAnswer;
-                    }
-                    break;
-            }
+            $answer = $this->comparator->getBetterAnswer($answer, $candidateAnswer);
         }
 
         return FinderResult::createResult($answer);

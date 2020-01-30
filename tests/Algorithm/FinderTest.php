@@ -5,8 +5,9 @@ declare(strict_types = 1);
 namespace CodelyTV\FinderKataTest\Algorithm;
 
 use CodelyTV\FinderKata\Algorithm\Finder;
-use CodelyTV\FinderKata\Algorithm\FinderComparisonAlgorithm;
 use CodelyTV\FinderKata\Algorithm\Person;
+use CodelyTV\FinderKata\Algorithm\ComparisonAlgorithmOne;
+use CodelyTV\FinderKata\Algorithm\ComparisonAlgorithmTwo;
 use PHPUnit\Framework\TestCase;
 
 final class FinderTest extends TestCase
@@ -35,9 +36,9 @@ final class FinderTest extends TestCase
     public function should_return_empty_when_given_empty_list()
     {
         $list   = [];
-        $finder = new Finder($list);
+        $finder = new Finder($list, new ComparisonAlgorithmOne());
 
-        $result = $finder->find(FinderComparisonAlgorithm::ONE);
+        $result = $finder->find();
 
         $this->assertEquals(false, $result->hasAnswer());
     }
@@ -47,9 +48,9 @@ final class FinderTest extends TestCase
     {
         $list   = [];
         $list[] = $this->sue;
-        $finder = new Finder($list);
+        $finder = new Finder($list, new ComparisonAlgorithmOne());
 
-        $result = $finder->find(FinderComparisonAlgorithm::ONE);
+        $result = $finder->find();
 
         $this->assertEquals(false, $result->hasAnswer());
     }
@@ -60,9 +61,9 @@ final class FinderTest extends TestCase
         $list   = [];
         $list[] = $this->sue;
         $list[] = $this->greg;
-        $finder = new Finder($list);
+        $finder = new Finder($list, new ComparisonAlgorithmOne());
 
-        $result = $finder->find(FinderComparisonAlgorithm::ONE);
+        $result = $finder->find();
 
         $this->assertEquals(true, $result->hasAnswer());
         $this->assertEquals($this->sue, $result->getAnswer()->person1());
@@ -75,9 +76,9 @@ final class FinderTest extends TestCase
         $list   = [];
         $list[] = $this->mike;
         $list[] = $this->greg;
-        $finder = new Finder($list);
+        $finder = new Finder($list, new ComparisonAlgorithmTwo());
 
-        $result = $finder->find(FinderComparisonAlgorithm::TWO);
+        $result = $finder->find();
 
         $this->assertEquals(true, $result->hasAnswer());
         $this->assertEquals($this->greg, $result->getAnswer()->person1());
@@ -92,9 +93,9 @@ final class FinderTest extends TestCase
         $list[] = $this->sarah;
         $list[] = $this->mike;
         $list[] = $this->greg;
-        $finder = new Finder($list);
+        $finder = new Finder($list, new ComparisonAlgorithmTwo());
 
-        $result = $finder->find(FinderComparisonAlgorithm::TWO);
+        $result = $finder->find();
 
         $this->assertEquals(true, $result->hasAnswer());
         $this->assertEquals($this->sue, $result->getAnswer()->person1());
@@ -111,9 +112,9 @@ final class FinderTest extends TestCase
         $list[] = $this->sarah;
         $list[] = $this->mike;
         $list[] = $this->greg;
-        $finder = new Finder($list);
+        $finder = new Finder($list, new ComparisonAlgorithmOne());
 
-        $result = $finder->find(FinderComparisonAlgorithm::ONE);
+        $result = $finder->find();
 
         $this->assertEquals(true, $result->hasAnswer());
         $this->assertEquals($this->sue, $result->getAnswer()->person1());
