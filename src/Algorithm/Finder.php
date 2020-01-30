@@ -24,8 +24,7 @@ final class Finder
 
         for ($i = 0; $i < count($this->people); $i++) {
             for ($j = $i + 1; $j < count($this->people); $j++) {
-                $candidatePair = new PersonPair($this->people[$j], $this->people[$i]);
-                $possibleResults[] = $candidatePair;
+                $possibleResults[] = new PersonPair($this->people[$j], $this->people[$i]);
             }
         }
 
