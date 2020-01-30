@@ -16,45 +16,38 @@ final class Finder
 
     public function find(int $ft): PersonPair
     {
-        /** @var PersonPair[] $tr */
-        $tr = [];
+        /** @var PersonPair[] $possibleResults */
+        $possibleResults = [];
 
         for ($i = 0; $i < count($this->people); $i++) {
             for ($j = $i + 1; $j < count($this->people); $j++) {
-                $r = new PersonPair();
+                $candidatePair = new PersonPair($this->people[$j], $this->people[$i]);
 
-                if ($this->people[$i]->birthDate < $this->people[$j]->birthDate) {
-                    $r->p1 = $this->people[$i];
-                    $r->p2 = $this->people[$j];
-                } else {
-                    $r->p1 = $this->people[$j];
-                    $r->p2 = $this->people[$i];
+                if ($this->people[$i]->getBirthDate() < $this->people[$j]->getBirthDate()) {
+                    $candidatePair = new PersonPair($this->people[$i], $this->people[$j]);
                 }
 
-                $r->d = $r->p2->birthDate->getTimestamp()
-                    - $r->p1->birthDate->getTimestamp();
-
-                $tr[] = $r;
+                $possibleResults[] = $candidatePair;
             }
         }
 
-        if (count($tr) < 1) {
+        if (count($possibleResults) < 1) {
             return new PersonPair();
         }
 
-        $answer = $tr[0];
+        $answer = $possibleResults[0];
 
-        foreach ($tr as $result) {
+        foreach ($possibleResults as $candidateAnswer) {
             switch ($ft) {
-                case FT::ONE:
-                    if ($result->d < $answer->d) {
-                        $answer = $result;
+                case FinderComparisonAlgorithm::ONE:
+                    if ($candidateAnswer->ageDifference() < $answer->ageDifference()) {
+                        $answer = $candidateAnswer;
                     }
                     break;
 
-                case FT::TWO:
-                    if ($result->d > $answer->d) {
-                        $answer = $result;
+                case FinderComparisonAlgorithm::TWO:
+                    if ($candidateAnswer->ageDifference() > $answer->ageDifference()) {
+                        $answer = $candidateAnswer;
                     }
                     break;
             }

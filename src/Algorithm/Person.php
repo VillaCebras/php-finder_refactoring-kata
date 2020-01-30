@@ -9,19 +9,20 @@ use DateTime;
 final class Person
 {
     /** @var string */
-    public $name;
+    protected $name;
 
     /** @var DateTime */
-    public $birthDate;
+    protected $birthDate;
+
+    public function __construct(string $name, DateTime $birthDate)
+    {
+        $this->name = $name;
+        $this->birthDate = $birthDate;
+    }
 
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function setName(string $name)
-    {
-        $this->name = $name;
     }
 
     public function getBirthDate(): DateTime
@@ -29,8 +30,8 @@ final class Person
         return $this->birthDate;
     }
 
-    public function setBirthDate(DateTime $birthDate)
+    public function getBirthDateTimestamp() : int
     {
-        $this->birthDate = $birthDate;
+        return $this->birthDate->getTimestamp();
     }
 }
