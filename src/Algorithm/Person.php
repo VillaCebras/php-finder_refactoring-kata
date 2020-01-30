@@ -20,11 +20,6 @@ final class Person
         $this->birthDate = $birthDate;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function getBirthDate(): DateTime
     {
         return $this->birthDate;
