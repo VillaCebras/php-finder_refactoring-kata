@@ -64,6 +64,7 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FinderComparisonAlgorithm::ONE);
 
+        $this->assertEquals(true, $result->hasAnswer());
         $this->assertEquals($this->sue, $result->getAnswer()->person1());
         $this->assertEquals($this->greg, $result->getAnswer()->person2());
     }
@@ -78,6 +79,7 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FinderComparisonAlgorithm::TWO);
 
+        $this->assertEquals(true, $result->hasAnswer());
         $this->assertEquals($this->greg, $result->getAnswer()->person1());
         $this->assertEquals($this->mike, $result->getAnswer()->person2());
     }
@@ -94,6 +96,7 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FinderComparisonAlgorithm::TWO);
 
+        $this->assertEquals(true, $result->hasAnswer());
         $this->assertEquals($this->sue, $result->getAnswer()->person1());
         $this->assertEquals($this->sarah, $result->getAnswer()->person2());
     }
@@ -112,6 +115,7 @@ final class FinderTest extends TestCase
 
         $result = $finder->find(FinderComparisonAlgorithm::ONE);
 
+        $this->assertEquals(true, $result->hasAnswer());
         $this->assertEquals($this->sue, $result->getAnswer()->person1());
         $this->assertEquals($this->greg, $result->getAnswer()->person2());
     }
