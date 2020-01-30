@@ -14,7 +14,7 @@ final class Finder
         $this->people = $people;
     }
 
-    public function find(int $ft): PersonPair
+    public function find(int $ft): FinderResult
     {
         /** @var PersonPair[] $possibleResults */
         $possibleResults = [];
@@ -32,7 +32,7 @@ final class Finder
         }
 
         if (count($possibleResults) < 1) {
-            return new PersonPair();
+            return FinderResult::createEmptyResult();
         }
 
         $answer = $possibleResults[0];
@@ -53,6 +53,6 @@ final class Finder
             }
         }
 
-        return $answer;
+        return FinderResult::createResult($answer);
     }
 }
